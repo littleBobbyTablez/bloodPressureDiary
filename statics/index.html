@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="http://localhost:8888/output.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body class="font-sans">
+      <div class="p-7 fixed bg-white w-full top-0 h-15">
+          <h2 class="h-8 text-4xl font-extrabold font-sans">Blood Preassure Diary</h2>
+      </div>
+      <div class="bg-blue-400 flex justify-evenly fixed top-20 w-full">
+          <button id="addButton" class="transition ease-in-out duration-300 hover:scale-105 hover:shadow-gray-600 hover:shadow-md p-4 w-1/3 hover:bg-blue-300 text-lg font-bold" hx-get="/addnew" hx-target="#content" hx-swap="innerHTML">Add</button>
+          <button id="historyButton" class="transition ease-in-out duration-300 hover:scale-105 hover:shadow-gray-600 hover:shadow-md p-4 w-1/3 hover:bg-blue-300 text-lg font-bold" hx-get="/historyChart" hx-target="#content" hx-swap="innerHTML">History</button>
+          <button id="editButton" class="transition ease-in-out duration-300 hover:scale-105 hover:shadow-gray-600 hover:shadow-md p-4 w-1/3 hover:bg-blue-300 text-lg font-bold" hx-get="/edit" hx-target="#content" hx-swap="innerHTML">Edit</button>
+      </div>
+      <div class="flex justify-center overflow-auto mt-40" id="content"> 
+          <h2 class="p-10 font-bold">welcome</h2>
+      </div>
+  </body>
+</html>
+

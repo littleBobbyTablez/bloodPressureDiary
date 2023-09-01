@@ -1,0 +1,10 @@
+<tr>
+<td class="p-4 text-left border-solid border-black border">{{ .entry.Sys }}</td>
+<td class="p-4 text-left border-solid border-black border">{{ .entry.Dys }}</td>
+<td class="p-4 text-left border-solid border-black border">{{ .entry.Puls }}</td>
+<td class="p-4 text-left border-solid border-black border">{{ .entry.T }}</td>
+<td class="p-4 text-left border-solid border-black border">{{ .entry.Sport }}</td>
+<td class="p-4 text-left border-solid border-black border">
+    <button hx-target="closest tr" hx-get="/editrow/{{ .entry.Id }}">Edit</button>
+</td>
+</tr>

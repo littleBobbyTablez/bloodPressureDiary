@@ -1,0 +1,29 @@
+
+<div class="font-sans m-10 w-5/6 flex">
+    <table class="w-full shadow-gray-800 shadow-xl">
+    <thead>
+        <tr class="bg-blue-300">
+            <th class="w-1/6 p-4 text-left border-solid border-black border">Sys</th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border">Dys</th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border">Puls</th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border">Date</th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border">Sport</th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border"></th>
+        </tr>
+    </thead>
+    <tbody hx-target="closest tr" hx-swap="outerHTML">
+    {{ range .data }}
+    <tr>
+        <td class="p-4 text-left border-solid border-black border">{{ .Sys }}</td>
+        <td class="p-4 text-left border-solid border-black border">{{ .Dys }}</td>
+        <td class="p-4 text-left border-solid border-black border">{{ .Puls }}</td>
+        <td class="p-4 text-left border-solid border-black border">{{ .T }}</td>
+        <td class="p-4 text-left border-solid border-black border">{{ .Sport }}</td>
+        <td class="p-4 text-left border-solid border-black border">
+            <button hx-get="/editrow/{{ .Id }}">Edit</button>
+        </td>
+    </tr>
+    {{ end }}
+    </tbody>
+</table>
+</div>

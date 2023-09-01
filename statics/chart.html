@@ -1,0 +1,38 @@
+<div id="mainAjax"class="flex w-11/12">
+
+    <canvas class="bg-white my-4 w-100 chartjs-render-monitor flex" id="myChart" style="display: block; height: 521px; width: 1234px;"></canvas>
+
+    <script>
+        function buildChart() {
+            let ctx = document.getElementById('myChart').getContext('2d');
+
+            let config = {
+                type: 'line',
+                    data: {
+                    labels : {{ .lab }},
+                    datasets: [{
+                        label: 'sys',
+                        data: {{ .sys }},
+                        borderColor: '#CD5C5C' ,
+                    },
+                    {
+                        label: 'dys',
+                        data: {{ .dys }},
+                        borderColor: '#3e478d',
+                    },
+                    {
+                        label: 'puls',
+                        data: {{ .puls }},
+                        borderColor: '#06cc45',
+
+                    }]
+                }
+            }
+            return new Chart(ctx, config);
+        }
+
+        var myChart = buildChart();
+
+
+    </script>
+</div>
