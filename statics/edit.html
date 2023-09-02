@@ -29,7 +29,7 @@
 
 <div class="p-10 w-full flex justify-end">
     {{ range .pages }}
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-800 shadow-xl" hx-target="#table" hx-get="/table/{{ . }}">{{ . }}</button>
+        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-800 shadow-xl focus:bg-blue-300" hx-target="#table" hx-get="/table/{{ . }}">{{ . }}</button>
     {{ end }}
 </div>
 </div>
