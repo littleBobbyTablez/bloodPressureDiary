@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-    _ "github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 const (
@@ -28,7 +28,7 @@ func connectDbPostgres() *sql.DB {
 }
 
 func connectDb() *sql.DB {
-    const file string = "db/bmp"
+	const file string = "db/testing"
 
 	db, err := sql.Open("sqlite3", file)
 	if err != nil {
@@ -36,5 +36,5 @@ func connectDb() *sql.DB {
 	}
 	fmt.Println("Successfully connected!")
 
-    return db
+	return db
 }

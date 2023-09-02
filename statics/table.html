@@ -1,6 +1,4 @@
-
-<div class="font-sans m-10 w-5/6 flex-col justify-evenly">
-    <table id="table" class="w-full shadow-gray-800 shadow-xl">
+<table id="table" class="w-full shadow-gray-800 shadow-xl">
     <thead>
         <tr class="bg-blue-300">
             <th class="w-1/6 p-4 text-left border-solid border-black border">Sys</th>
@@ -26,10 +24,3 @@
     {{ end }}
     </tbody>
 </table>
-
-<div class="p-10 w-full flex justify-end">
-    {{ range .pages }}
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-800 shadow-xl" hx-target="#table" hx-get="/table/{{ . }}">{{ . }}</button>
-    {{ end }}
-</div>
-</div>

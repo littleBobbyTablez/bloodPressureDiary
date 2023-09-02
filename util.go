@@ -7,8 +7,43 @@ import (
 	"time"
 )
 
-func readEntries(db *sql.DB) ([]entry, error) {
-	rows, err := db.Query("SELECT ROWID, * FROM entries;")
+func getEntryCount(db *sql.DB) int {
+	row, err := db.Query("SELECT count(*) FROM entries;")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var count int
+	row.Next()
+	if err := row.Scan(&count); err != nil {
+		log.Fatal(err)
+	}
+
+	return count
+}
+
+func readEntries(db *sql.DB, offset int) ([]entry, error) {
+
+	q := fmt.Sprintf("SELECT ROWID, * FROM entries LIMIT 10 OFFSET %d;", offset)
+	rows, err := db.Query(q)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var e []entry
+	for rows.Next() {
+		var en entry
+		if err := rows.Scan(&en.Id, &en.Sys, &en.Dys, &en.Puls, &en.Sport,
+			&en.T); err != nil {
+			return e, err
+		}
+		e = append(e, entry{en.Id, en.Sys, en.Dys, en.Puls, en.Sport, en.T})
+	}
+	return e, nil
+}
+
+func readAllEntries(db *sql.DB) ([]entry, error) {
+	q := fmt.Sprintf("SELECT ROWID, * FROM entries;")
+	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)
 	}

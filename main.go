@@ -16,7 +16,7 @@ type entry struct {
 	Id    int
 	Sys   int64
 	Dys   int64
-	Puls   int64
+	Puls  int64
 	Sport bool
 	T     time.Time
 }
@@ -25,16 +25,16 @@ type entryFormat struct {
 	Id    int
 	Sys   int64
 	Dys   int64
-	Puls   int64
+	Puls  int64
 	Sport bool
 	T     string
 }
 
 type values struct {
-	Sys   int64
-	Dys   int64
-	Puls  int64
-	T     string
+	Sys  int64
+	Dys  int64
+	Puls int64
+	T    string
 }
 
 func main() {
@@ -49,19 +49,21 @@ func main() {
 	})
 
 	r.GET("/historyChart", func(c *gin.Context) {
-		e, err := readEntries(db)
+		e, err := readAllEntries(db)
 		if err != nil {
 			log.Fatal(err)
 		}
 
 		lab, sys, dys, puls := generateData(e)
 
-        c.HTML(http.StatusOK, "chart.html", gin.H{"sys": sys, "dys": dys, "puls": puls, "lab": lab})
+		c.HTML(http.StatusOK, "chart.html", gin.H{"sys": sys, "dys": dys, "puls": puls, "lab": lab})
 	})
 
 	r.GET("/edit", func(c *gin.Context) {
 
-		e, err := readEntries(db)
+		count := getEntryCount(db)
+
+		e, err := readEntries(db, 0)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -72,8 +74,35 @@ func main() {
 			data = append(data, entryFormat{en.Id, en.Sys, en.Dys, en.Puls, en.Sport, en.T.Format(time.DateOnly)})
 		}
 
-		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data})
+		pages := ((count - 1) / 10) + 1
+
+		a := make([]int, pages)
+
+		for i := 1; i <= pages; i++ {
+			a[i-1] = i
+		}
+
+		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a})
 	})
+
+    r.GET("/table/:Page", func(c *gin.Context) {
+        param := c.Param("Page")
+        page, err := strconv.Atoi(param)
+        if err != nil {
+            log.Fatal(err)
+        }
+        
+        offset := (page - 1) * 10
+        e, _ := readEntries(db, offset)
+        
+        var data []entryFormat
+		for _, en := range e {
+
+			data = append(data, entryFormat{en.Id, en.Sys, en.Dys, en.Puls, en.Sport, en.T.Format(time.DateOnly)})
+		}
+ 
+        c.HTML(http.StatusOK, "table.html", gin.H{"data": data})
+    })
 
 	r.GET("/entry/:Id", func(c *gin.Context) {
 		param := c.Param("Id")
@@ -92,7 +121,7 @@ func main() {
 		id, err := strconv.ParseInt(param, 10, 64)
 		s, _ := strconv.ParseInt(c.Request.FormValue("sys"), 10, 64)
 		d, _ := strconv.ParseInt(c.Request.FormValue("dys"), 10, 64)
-        p, _ := strconv.ParseInt(c.Request.FormValue("puls"), 10, 64)
+		p, _ := strconv.ParseInt(c.Request.FormValue("puls"), 10, 64)
 		sp, _ := strconv.ParseBool(c.Request.FormValue("sport"))
 
 		if err != nil {
@@ -105,7 +134,7 @@ func main() {
 		e.Sys = s
 		e.Dys = d
 		e.Sport = sp
-        e.Puls = p
+		e.Puls = p
 
 		updateEntry(e, db)
 
@@ -140,14 +169,14 @@ func main() {
 			0,
 			s,
 			d,
-            p,
+			p,
 			sp,
 			time.Now(),
 		}
 
 		writeEntry(e, db)
 
-        c.HTML(http.StatusOK, "success.html", gin.H{})
+		c.HTML(http.StatusOK, "success.html", gin.H{})
 	})
 
 	r.StaticFile("/output.css", "./statics/css/output.css")
