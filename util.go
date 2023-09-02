@@ -8,16 +8,15 @@ import (
 )
 
 func getEntryCount(db *sql.DB) int {
-	row, err := db.Query("SELECT count(*) FROM entries;")
+	rows, err := db.Query("SELECT ROWID FROM entries;")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	var count int
-	row.Next()
-	if err := row.Scan(&count); err != nil {
-		log.Fatal(err)
-	}
+    count := 0
+    for rows.Next() { 
+        count += 1 
+    }
 
 	return count
 }
@@ -46,7 +45,7 @@ func readAllEntries(db *sql.DB) ([]entry, error) {
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)
-	}
+    }
 	var e []entry
 	for rows.Next() {
 		var en entry
@@ -78,14 +77,14 @@ func readEntry(db *sql.DB, id int) (entry, error) {
 }
 
 func writeEntry(e entry, db *sql.DB) {
-	_, err := db.Exec("insert into entries values ($1, $2, $3, $4, $5)", e.Sys, e.Dys, e.Puls, e.Sport, e.T)
+	_, err := db.Exec("insert into entries values ($1, $2, $3, $4, $5);", e.Sys, e.Dys, e.Puls, e.Sport, e.T)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 func updateEntry(e entry, db *sql.DB) {
-	_, err := db.Exec("update entries set sys = $1, dys = $2, puls= $3, sport = $4 where ROWID = $5", e.Sys, e.Dys, e.Puls, e.Sport, e.Id)
+	_, err := db.Exec("update entries set sys = $1, dys = $2, puls= $3, sport = $4 where ROWID = $5;", e.Sys, e.Dys, e.Puls, e.Sport, e.Id)
 	if err != nil {
 		log.Fatal(err)
 	}

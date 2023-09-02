@@ -93,8 +93,11 @@ func main() {
         }
         
         offset := (page - 1) * 10
-        e, _ := readEntries(db, offset)
-        
+        e, err2 := readEntries(db, offset)
+         if err2 != nil {
+            log.Fatal(err2)
+        }
+
         var data []entryFormat
 		for _, en := range e {
 
