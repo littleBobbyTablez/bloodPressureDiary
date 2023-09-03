@@ -2,4 +2,5 @@
 .air.toml
 .idea/
 tmp
+db/bpm
 db/bmp

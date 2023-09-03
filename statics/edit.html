@@ -1,13 +1,13 @@
 
-<div class="font-sans m-10 w-5/6 flex-col justify-evenly">
-    <table id="table" class="w-full shadow-gray-800 shadow-xl">
+<div id="table" class="font-sans m-10 w-5/6 flex-col justify-evenly">
+    <table class="w-full shadow-gray-500 shadow-xl">
     <thead>
         <tr class="bg-blue-300">
-            <th class="w-1/6 p-4 text-left border-solid border-black border">Sys</th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">Dys</th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">Puls</th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">Date</th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">Sport</th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border"><button>Sys</button></th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border"><button>Dys</button></th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border"><button>Puls</button></th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border"><button>Date</button></th>
+            <th class="w-1/6 p-4 text-left border-solid border-black border"><button>Sport</button></th>
             <th class="w-1/6 p-4 text-left border-solid border-black border"></th>
         </tr>
     </thead>
@@ -29,7 +29,7 @@
 
 <div class="p-10 w-full flex justify-end">
     {{ range .pages }}
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-800 shadow-xl focus:bg-blue-300" hx-target="#table" hx-get="/table/{{ . }}">{{ . }}</button>
+    <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl hover:scale-95 {{ if .Active }}bg-blue-300 {{ end }}" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}">{{ .Page }}</button>
     {{ end }}
 </div>
 </div>

@@ -37,6 +37,11 @@ type values struct {
 	T    string
 }
 
+type pageType struct {
+    Page int
+    Active bool
+}
+
 func main() {
 	db := connectDb()
 
@@ -61,7 +66,6 @@ func main() {
 
 	r.GET("/edit", func(c *gin.Context) {
 
-		count := getEntryCount(db)
 
 		e, err := readEntries(db, 0)
 		if err != nil {
@@ -74,12 +78,14 @@ func main() {
 			data = append(data, entryFormat{en.Id, en.Sys, en.Dys, en.Puls, en.Sport, en.T.Format(time.DateOnly)})
 		}
 
+        count := getEntryCount(db)
 		pages := ((count - 1) / 10) + 1
 
-		a := make([]int, pages)
+		a := make([]pageType, pages)
 
-		for i := 1; i <= pages; i++ {
-			a[i-1] = i
+		for i := 1; i <= pages; i++ { 
+            active := i == 1
+            a[i-1] = pageType{i, active}
 		}
 
 		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a})
@@ -103,8 +109,18 @@ func main() {
 
 			data = append(data, entryFormat{en.Id, en.Sys, en.Dys, en.Puls, en.Sport, en.T.Format(time.DateOnly)})
 		}
+
+        count := getEntryCount(db)
+		pages := ((count - 1) / 10) + 1
+
+		a := make([]pageType, pages)
+
+		for i := 1; i <= pages; i++ { 
+            active := i == page
+            a[i-1] = pageType{i, active}
+		}
  
-        c.HTML(http.StatusOK, "table.html", gin.H{"data": data})
+        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a})
     })
 
 	r.GET("/entry/:Id", func(c *gin.Context) {
