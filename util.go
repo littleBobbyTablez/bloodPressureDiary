@@ -21,9 +21,9 @@ func getEntryCount(db *sql.DB) int {
 	return count
 }
 
-func readEntries(db *sql.DB, offset int) ([]entry, error) {
+func readEntries(db *sql.DB, offset int, orderBy string, order string) ([]entry, error) {
 
-	q := fmt.Sprintf("SELECT ROWID, * FROM entries LIMIT 10 OFFSET %d;", offset)
+	q := fmt.Sprintf("SELECT ROWID, * FROM entries ORDER BY %s %s LIMIT 10 OFFSET %d;", orderBy, order, offset )
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)

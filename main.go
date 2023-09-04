@@ -40,6 +40,8 @@ type values struct {
 type pageType struct {
     Page int
     Active bool
+    OrderBy string
+    Order string
 }
 
 func main() {
@@ -67,7 +69,7 @@ func main() {
 	r.GET("/edit", func(c *gin.Context) {
 
 
-		e, err := readEntries(db, 0)
+		e, err := readEntries(db, 0, "t", "ASC")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -85,10 +87,10 @@ func main() {
 
 		for i := 1; i <= pages; i++ { 
             active := i == 1
-            a[i-1] = pageType{i, active}
+            a[i-1] = pageType{i, active, "t", "ASC"}
 		}
 
-		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a})
+        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": 1, "orderBy": "t", "order":"ASC", "symbol": "9660"})
 	})
 
     r.GET("/table/:Page", func(c *gin.Context) {
@@ -98,8 +100,19 @@ func main() {
             log.Fatal(err)
         }
         
+        orderBy := c.Query("orderBy")
+        order := c.Query("order")
+        symbol := "9660"
+
+        if order == "ASC" {
+            order = "DESC"
+            symbol = "9650"
+        } else {
+            order = "ASC" 
+        }
+
         offset := (page - 1) * 10
-        e, err2 := readEntries(db, offset)
+        e, err2 := readEntries(db, offset, orderBy, order)
          if err2 != nil {
             log.Fatal(err2)
         }
@@ -117,10 +130,10 @@ func main() {
 
 		for i := 1; i <= pages; i++ { 
             active := i == page
-            a[i-1] = pageType{i, active}
+            a[i-1] = pageType{i, active, orderBy, order}
 		}
  
-        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a})
+        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": page, "orderBy": orderBy, "order": order, "symbol": symbol})
     })
 
 	r.GET("/entry/:Id", func(c *gin.Context) {
