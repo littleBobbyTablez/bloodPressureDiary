@@ -90,7 +90,7 @@ func main() {
             a[i-1] = pageType{i, active, "t", "ASC"}
 		}
 
-        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": 1, "orderBy": "t", "order":"ASC", "symbol": "9660"})
+        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": 1, "orderBy": "t", "order":"ASC", "symbol": "9650"})
 	})
 
     r.GET("/table/:Page", func(c *gin.Context) {
@@ -102,13 +102,22 @@ func main() {
         
         orderBy := c.Query("orderBy")
         order := c.Query("order")
-        symbol := "9660"
+        noswitch, parseErr:= strconv.ParseBool(c.Query("noswitch"))
+        if parseErr != nil {
+            noswitch = false
+        }
+        symbol := "9650"
+        
+        if !noswitch {
+            if order == "ASC" {
+                order = "DESC"
+            } else {
+                order = "ASC" 
+            }
+        }
 
-        if order == "ASC" {
-            order = "DESC"
-            symbol = "9650"
-        } else {
-            order = "ASC" 
+        if order == "DESC" {
+            symbol = "9660"
         }
 
         offset := (page - 1) * 10

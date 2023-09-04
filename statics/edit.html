@@ -3,19 +3,19 @@
     <thead>
         <tr class="bg-blue-300">
             <th class="w-1/6 p-4 text-left border-solid border-black border">
-                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sys", "order":"{{ .order }}"}'>Sys {{ if eq .orderBy "sys" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sys", "order":"{{ .order }}" {{ if not (eq .orderBy "sys") }},"noswitch":"true"{{end}}}'>Sys {{ if eq .orderBy "sys" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 p-4 text-left border-solid border-black border">
-                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"dys", "order":"{{ .order }}"}'>Dys {{ if eq .orderBy "dys" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"dys", "order":"{{ .order }}" {{ if not (eq .orderBy "dys") }},"noswitch":"true"{{end}}}'>Dys {{ if eq .orderBy "dys" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 p-4 text-left border-solid border-black border">
-                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"puls", "order":"{{ .order }}"}'>Puls {{ if eq .orderBy "puls" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"puls", "order":"{{ .order }}" {{ if not (eq .orderBy "puls") }},"noswitch":"true"{{end}}}'>Puls {{ if eq .orderBy "puls" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 p-4 text-left border-solid border-black border">
-                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"t", "order":"{{ .order }}"}'>Date {{ if eq .orderBy "t" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"t", "order":"{{ .order }}" {{ if not (eq .orderBy "t") }},"noswitch":"true"{{end}}}'>Date {{ if eq .orderBy "t" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 p-4 text-left border-solid border-black border">
-                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sport", "order":"{{ .order }}"}'>Sport {{ if eq .orderBy "sport" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sport", "order":"{{ .order }}" {{ if not (eq .orderBy "sport") }},"noswitch":"true"{{end}}}'>Sport {{ if eq .orderBy "sport" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 p-4 text-left border-solid border-black border"></th>
         </tr>
@@ -38,7 +38,7 @@
 
 <div class="p-10 w-full flex justify-end">
     {{ range .pages }}
-    <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl hover:scale-95 {{ if .Active }}bg-blue-300 {{ end }}" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}"}'>{{ .Page }}</button>
+    <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl hover:scale-95 {{ if .Active }}bg-blue-300 {{ end }}" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}'>{{ .Page }}</button>
     {{ end }}
 </div>
 </div>
