@@ -36,9 +36,22 @@
     </tbody>
 </table>
 
-<div class="p-10 w-full flex justify-end">
-    {{ range .pages }}
-    <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl hover:scale-95 {{ if .Active }}bg-blue-300 {{ end }}" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}'>{{ .Page }}</button>
-    {{ end }}
+<div class="p-10 w-full flex justify-between">
+    <div class="flex justify-evenly">
+    <span class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1">
+        <label>from: </label>
+        <input name="from" type="date"/>
+    </span>
+    <span class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1">
+        <label> to:</label>
+        <input name="to" type="date"/>
+    </span>
+    <button class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1 hover:scale-95" hx-include="closest div" hx-get="/table/1" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}'>filter</button>
+    </div>
+    <div>
+        {{ range .pages }}
+        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl hover:scale-95 {{ if .Active }}bg-blue-300 {{ end }}" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}'>{{ .Page }}</button>
+        {{ end }}
+    </div>
 </div>
 </div>

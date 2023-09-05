@@ -7,23 +7,50 @@ import (
 	"time"
 )
 
-func getEntryCount(db *sql.DB) int {
-	rows, err := db.Query("SELECT ROWID FROM entries;")
+func getEntryCount(db *sql.DB, from string, to string) int {
+	var start string
+	var end string
+
+	if from == "" {
+		start = "1970-01-01"
+	} else {
+		start = from
+	}
+	if to == "" {
+		end = "2300-01-01"
+	} else {
+		end = to
+	}
+
+	q := fmt.Sprintf("SELECT ROWID FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00';", start, end)
+	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-    count := 0
-    for rows.Next() { 
-        count += 1 
-    }
+	count := 0
+	for rows.Next() {
+		count += 1
+	}
 
 	return count
 }
 
-func readEntries(db *sql.DB, offset int, orderBy string, order string) ([]entry, error) {
+func readEntries(db *sql.DB, offset int, orderBy string, order string, from string, to string) ([]entry, error) {
+	var start string
+	var end string
 
-	q := fmt.Sprintf("SELECT ROWID, * FROM entries ORDER BY %s %s LIMIT 10 OFFSET %d;", orderBy, order, offset )
+	if from == "" {
+		start = "1970-01-01"
+	} else {
+		start = from
+	}
+	if to == "" {
+		end = "2300-01-01"
+	} else {
+		end = to
+	}
+	q := fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s LIMIT 10 OFFSET %d;", start, end, orderBy, order, offset)
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)
@@ -45,7 +72,7 @@ func readAllEntries(db *sql.DB) ([]entry, error) {
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)
-    }
+	}
 	var e []entry
 	for rows.Next() {
 		var en entry
