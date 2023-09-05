@@ -143,7 +143,7 @@ func main() {
 			a[i-1] = pageType{i, active, orderBy, order}
 		}
 
-		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": page, "orderBy": orderBy, "order": order, "symbol": symbol})
+        c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": page, "orderBy": orderBy, "order": order, "symbol": symbol, "from": from, "to": to})
 	})
 
 	r.GET("/entry/:Id", func(c *gin.Context) {
