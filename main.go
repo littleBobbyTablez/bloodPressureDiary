@@ -217,8 +217,6 @@ func main() {
 		}
 
 		writeEntry(e, db)
-
-		c.HTML(http.StatusOK, "success.html", gin.H{})
 	})
 
 	r.StaticFile("/output.css", "./statics/css/output.css")

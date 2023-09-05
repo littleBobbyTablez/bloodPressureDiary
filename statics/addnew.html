@@ -1,5 +1,7 @@
-<div class=" hover:shadow-xl hover:shadow-gray-600 rounded-xl m-10 border-2 border-gray-800 transition ease-in-out duration-300 hover:scale-105">
-    <form class="p-6 text-xl" id="content" hx-post="/add">
+
+<div class="fixed flex flex-col items-center justify-center top-0 bottom-0 left-0 right-0" _="on closeModal remove me">
+    <div class="bg-gray-800 opacity-50 absolute top-0 bottom-0 left-0 right-0"></div>
+    <form class="modal p-6 shadow-gray-800 shadow-xl text-xl bg-white border-black border-2 rounded z-50" hx-post="/add" _="on submit trigger closeModal">
         <div class="p-3 justify-center">
             <label class="flex w-full justify-center">
                 <span class="pr-2">Sys</span>        
@@ -25,11 +27,11 @@
             </div>
             <div class="ml-2 text-sm">
                 <label for="helper-checkbox" class="text-xl text-black">Sport</label>
-            </div>
+            </div> 
         </div>
-        <div class="flex justify-end">
-            <span id="success"></span>
-            <button class="transition ease-out duration-300 hover:scale-110 hover:shadow-gray-600 hover:shadow-md curser-pointer bg-blue-400 p-2 rounded" type="submit">Submit</button>
+        <div class="flex justify-end p-3">
+            <button class="transition ease-out duration-300 hover:scale-110 hover:shadow-gray-600 hover:shadow-md curser-pointer bg-gray-300 p-2 rounded mr-2" _="on click trigger closeModal">Cancel</button>
+            <button class="transition ease-out duration-300 hover:scale-110 hover:shadow-gray-600 hover:shadow-md curser-pointer bg-blue-400 p-2 rounded ml-2" type="submit">Submit</button>
         </div>
     </form>
-</div>
+<div>
