@@ -1,6 +1,6 @@
-<div id="chart"class="flex flex-col w-11/12">
+<div id="chart" class="flex flex-col w-11/12 h-72 justify-center bg-red-100">
 
-    <canvas class="bg-white my-4 w-100 chartjs-render-monitor flex" id="myChart" style="display: block; height: 521px; width: 1234px;"></canvas>
+    <canvas class="chartjs-render-monitor" id="myChart"></canvas>
 
     <script>
         function buildChart() {
@@ -26,6 +26,14 @@
                         borderColor: '#06cc45',
 
                     }]
+                },
+                options: {
+                    aspectRatio: 1.8,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
             }
             return new Chart(ctx, config);
