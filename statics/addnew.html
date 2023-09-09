@@ -1,10 +1,11 @@
 
-<div class="fixed flex flex-col items-center justify-center top-0 bottom-0 left-0 right-0" _="on closeModal remove me">
+<div id="modal" class="fixed flex flex-col items-center justify-center top-0 bottom-0 left-0 right-0" _="on closeModal transition opacity to 0 over 300ms then remove me end">
+
     <div class="bg-gray-800 opacity-50 absolute top-0 bottom-0 left-0 right-0"></div>
-    <form class="modal p-6 shadow-gray-800 shadow-xl text-xl bg-white border-black border-2 rounded z-50" hx-post="/add" _="on submit trigger closeModal">
+    <form class="modal p-6 shadow-gray-800 shadow-xl text-xl bg-white border-black border-2 rounded z-50" hx-post="/add" hx-swap="none" _="on submit trigger closeModal end">
         <div class="p-3 justify-center">
             <label class="flex w-full justify-center">
-                <span class="pr-2">Sys</span>        
+                <span class="pr-2">Sys</span>
                 <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:ring-blue-500 pl-2" type="number" name="sys" value="120">
             </label>
         </div>
@@ -27,7 +28,7 @@
             </div>
             <div class="ml-2 text-sm">
                 <label for="helper-checkbox" class="text-xl text-black">Sport</label>
-            </div> 
+            </div>
         </div>
         <div class="flex justify-end p-3">
             <button class="transition ease-out duration-300 hover:scale-110 hover:shadow-gray-600 hover:shadow-md curser-pointer bg-gray-300 p-2 rounded mr-2" _="on click trigger closeModal">Cancel</button>
