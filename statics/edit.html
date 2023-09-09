@@ -50,7 +50,7 @@
     </div>
     <div>
         {{ range .pages }}
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl hover:scale-95 {{ if .Active }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}'>{{ .Page }}</button>
+        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if .Active }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95'>{{ .Page }}</button>
         {{ end }}
     </div>
 </div>
