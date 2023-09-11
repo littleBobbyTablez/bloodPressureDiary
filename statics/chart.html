@@ -48,11 +48,11 @@
         <div class="flex justify-evenly">
         <span class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1">
             <label>from: </label>
-            <input id="from" name="from" type="date" {{ if not (eq .from "")}}value="{{ .from }}"{{end}}/>
+            <input id="from" class="bg-transparent" name="from" type="date" {{ if not (eq .from "")}}value="{{ .from }}"{{end}}/>
         </span>
         <span class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1">
             <label> to:</label>
-            <input id="to" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
+            <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
         </span>
         <button class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1 hover:scale-95" hx-include="closest div" hx-get="/historyChart" hx-target="#chart" hx-swap="outerHTML">filter</button>
         </div>
