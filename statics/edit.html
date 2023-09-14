@@ -1,34 +1,34 @@
-<div id="table" class="font-sans m-10 w-5/6 flex-col justify-evenly">
-    <table class="w-full shadow-gray-500 shadow-xl">
+<div id="table" class="m-10 w-5/6 flex-col justify-evenly font-sans">
+    <table class="w-full shadow-xl shadow-gray-500">
     <thead>
         <tr class="bg-blue-300">
-            <th class="w-1/6 p-4 text-left border-solid border-black border">
+            <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sys", "order":"{{ .order }}" {{ if not (eq .orderBy "sys") }},"noswitch":"true"{{end}}}'>Sys {{ if eq .orderBy "sys" }}&#{{ .symbol }};{{end}}</button>
             </th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">
+            <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"dys", "order":"{{ .order }}" {{ if not (eq .orderBy "dys") }},"noswitch":"true"{{end}}}'>Dys {{ if eq .orderBy "dys" }}&#{{ .symbol }};{{end}}</button>
             </th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">
+            <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"puls", "order":"{{ .order }}" {{ if not (eq .orderBy "puls") }},"noswitch":"true"{{end}}}'>Puls {{ if eq .orderBy "puls" }}&#{{ .symbol }};{{end}}</button>
             </th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">
+            <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"t", "order":"{{ .order }}" {{ if not (eq .orderBy "t") }},"noswitch":"true"{{end}}}'>Date {{ if eq .orderBy "t" }}&#{{ .symbol }};{{end}}</button>
             </th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border">
+            <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sport", "order":"{{ .order }}" {{ if not (eq .orderBy "sport") }},"noswitch":"true"{{end}}}'>Sport {{ if eq .orderBy "sport" }}&#{{ .symbol }};{{end}}</button>
             </th>
-            <th class="w-1/6 p-4 text-left border-solid border-black border"></th>
+            <th class="w-1/6 border border-solid border-black p-4 text-left"></th>
         </tr>
     </thead>
     <tbody hx-target="closest tr" hx-swap="outerHTML">
     {{ range .data }}
     <tr>
-        <td class="p-4 text-left border-solid border-black border">{{ .Sys }}</td>
-        <td class="p-4 text-left border-solid border-black border">{{ .Dys }}</td>
-        <td class="p-4 text-left border-solid border-black border">{{ .Puls }}</td>
-        <td class="p-4 text-left border-solid border-black border">{{ .T }}</td>
-        <td class="p-4 text-left border-solid border-black border">{{ .Sport }}</td>
-        <td class="p-4 text-left border-solid border-black border">
+        <td class="border border-solid border-black p-4 text-left">{{ .Sys }}</td>
+        <td class="border border-solid border-black p-4 text-left">{{ .Dys }}</td>
+        <td class="border border-solid border-black p-4 text-left">{{ .Puls }}</td>
+        <td class="border border-solid border-black p-4 text-left">{{ .T }}</td>
+        <td class="border border-solid border-black p-4 text-left">{{ .Sport }}</td>
+        <td class="border border-solid border-black p-4 text-left">
             <button hx-get="/editrow/{{ .Id }}">Edit</button>
         </td>
     </tr>
@@ -36,17 +36,17 @@
     </tbody>
 </table>
 
-<div class="p-10 w-full flex justify-between">
+<div class="flex w-full justify-between p-10">
     <div class="flex justify-evenly">
-    <span class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1">
+    <span class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500">
         <label>from: </label>
         <input id="from" class="bg-transparent" name="from" type="date" {{ if not (eq .from "")}}value="{{ .from }}"{{end}}/>
     </span>
-    <span class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1">
+    <span class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500">
         <label> to:</label>
         <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
     </span>
-    <button class="border-2 border-black rounded p-3 shadow-xl shadow-gray-500 m-1 hover:scale-95" hx-include="closest div" hx-get="/table/1" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}'>filter</button>
+    <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500 hover:scale-95" hx-include="closest div" hx-get="/table/1" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}'>filter</button>
     </div>
     <div>
         {{ range .pages }}

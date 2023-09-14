@@ -1,38 +1,38 @@
 
-<div id="modal" class="fixed flex flex-col items-center justify-center top-0 bottom-0 left-0 right-0 htmx-added:opacity-0 opacity-100 transition-opacity duration-500 " _="on closeModal transition opacity to 0 over 300ms then remove me end">
+<div id="modal" class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center htmx-added:opacity-0 opacity-100 transition-opacity duration-500" _="on closeModal transition opacity to 0 over 300ms then remove me end">
 
-    <div class="bg-gray-800 opacity-50 absolute top-0 bottom-0 left-0 right-0"></div>
-    <form class="modal p-6 shadow-gray-800 shadow-xl text-xl bg-white border-black border-2 rounded z-50" hx-post="/add" hx-swap="none" _="on submit trigger closeModal end">
-        <div class="p-3 justify-center">
+    <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-800 opacity-50"></div>
+    <form class="z-50 rounded border-2 border-black bg-white p-6 text-xl shadow-xl shadow-gray-800 modal" hx-post="/add" hx-swap="none" _="on submit trigger closeModal end">
+        <div class="justify-center p-3">
             <label class="flex w-full justify-center">
                 <span class="pr-2">Sys</span>
-                <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:ring-blue-500 pl-2" type="number" name="sys" value="120">
+                <input class="appearance-none rounded border px-3 py-2 pl-2 leading-tight text-gray-700 shadow focus:ring-blue-500" type="number" name="sys" value="120">
             </label>
         </div>
         <div class="p-3">
             <label class="flex w-full justify-center">
                 <span class="pr-2">Dys</span>
-                <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:ring-blue-500 pl-2" type="number" name="dys" value="80"><br>
+                <input class="appearance-none rounded border px-3 py-2 pl-2 leading-tight text-gray-700 shadow focus:ring-blue-500" type="number" name="dys" value="80"><br>
             </label>
         </div>
         <div class="p-3">
             <label class="flex w-full justify-center">
                 <span class="pr-2">Puls</span>
-                <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:ring-blue-500 pl-2" type="number" name="puls" value="60"><br>
+                <input class="appearance-none rounded border px-3 py-2 pl-2 leading-tight text-gray-700 shadow focus:ring-blue-500" type="number" name="puls" value="60"><br>
             </label>
         </div>
 
         <div class="flex justify-center">
             <div class="flex h-5">
-                <input id="helper-checkbox" type="checkbox" value="" class="shadow border-none outline-none w-7 h-7 text-blue-600 rounded focus:ring-blue-500">
+                <input id="helper-checkbox" type="checkbox" value="" class="h-7 w-7 rounded border-none text-blue-600 shadow outline-none focus:ring-blue-500">
             </div>
             <div class="ml-2 text-sm">
                 <label for="helper-checkbox" class="text-xl text-black">Sport</label>
             </div>
         </div>
         <div class="flex justify-end p-3">
-            <button class="transition ease-out duration-300 hover:scale-110 hover:shadow-gray-600 hover:shadow-md curser-pointer bg-gray-300 p-2 rounded mr-2" _="on click trigger closeModal" type="button">Cancel</button>
-            <button class="transition ease-out duration-300 hover:scale-110 hover:shadow-gray-600 hover:shadow-md curser-pointer bg-blue-400 p-2 rounded ml-2" type="submit">Submit</button>
+            <button class="mr-2 rounded bg-gray-300 p-2 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600" _="on click trigger closeModal" type="button">Cancel</button>
+            <button class="ml-2 rounded bg-blue-400 p-2 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600" type="submit">Submit</button>
         </div>
     </form>
 <div>
