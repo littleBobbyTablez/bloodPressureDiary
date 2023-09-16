@@ -36,7 +36,7 @@ func getEntryCount(db *sql.DB, from string, to string) int {
 	return count
 }
 
-func readEntries(db *sql.DB, offset int, orderBy string, order string, from string, to string) ([]entry, error) {
+func readEntries(db *sql.DB, offset int, orderBy string, order string, from string, to string, limit bool) ([]entry, error) {
 	var start string
 	var end string
 
@@ -50,7 +50,13 @@ func readEntries(db *sql.DB, offset int, orderBy string, order string, from stri
 	} else {
 		end = to
 	}
-	q := fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s LIMIT 10 OFFSET %d;", start, end, orderBy, order, offset)
+	var q string
+	if limit {
+		q = fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s LIMIT 10 OFFSET %d;", start, end, orderBy, order, offset)
+	} else {
+		q = fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s;", start, end, orderBy, order)
+	}
+
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Fatal(err)
