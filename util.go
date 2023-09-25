@@ -7,6 +7,15 @@ import (
 	"time"
 )
 
+type SqlParams struct {
+	offset  int
+	orderBy string
+	order   string
+	from    string
+	to      string
+	limit   int
+}
+
 func getEntryCount(db *sql.DB, from string, to string) int {
 	var start string
 	var end string
@@ -36,26 +45,22 @@ func getEntryCount(db *sql.DB, from string, to string) int {
 	return count
 }
 
-func readEntries(db *sql.DB, offset int, orderBy string, order string, from string, to string, limit bool) ([]entry, error) {
+func readEntries(db *sql.DB, params SqlParams) ([]entry, error) {
 	var start string
 	var end string
 
-	if from == "" {
+	if params.from == "" {
 		start = "1970-01-01"
 	} else {
-		start = from
+		start = params.from
 	}
-	if to == "" {
+	if params.to == "" {
 		end = "2300-01-01"
 	} else {
-		end = to
+		end = params.to
 	}
 	var q string
-	if limit {
-		q = fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s LIMIT 10 OFFSET %d;", start, end, orderBy, order, offset)
-	} else {
-		q = fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s;", start, end, orderBy, order)
-	}
+	q = fmt.Sprintf("SELECT ROWID, * FROM entries WHERE t >= '%s' AND t <= '%s 23:59:59:999999+02:00' ORDER BY %s %s LIMIT %d OFFSET %d;", start, end, params.orderBy, params.order, params.limit, params.offset)
 
 	rows, err := db.Query(q)
 	if err != nil {
