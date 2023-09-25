@@ -47,11 +47,11 @@
         <label> to:</label>
         <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
     </span>
-    <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500 hover:scale-95" hx-include="closest div" hx-get="/table/1" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}'>filter</button>
+    <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500" hx-include="closest div" hx-get="/table/1" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>filter</button>
     </div>
     <div>
         {{ range .pages }}
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if .Active }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95'>{{ .Page }}</button>
+        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if .Active }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .Page }}" hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true"}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>{{ .Page }}</button>
         {{ end }}
     </div>
 </div>

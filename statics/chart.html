@@ -54,7 +54,7 @@
             <label> to:</label>
             <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
         </span>
-        <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500 hover:scale-95" hx-include="closest div" hx-get="/historyChart" hx-target="#chart" hx-swap="outerHTML">filter</button>
+        <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500" hx-include="closest div" hx-get="/historyChart" hx-target="#chart" hx-swap="outerHTML" _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>filter</button>
         </div>
     </div>
 </div>
