@@ -207,7 +207,12 @@ func main() {
 		s, _ := strconv.ParseInt(c.PostForm("sys"), 10, 64)
 		d, _ := strconv.ParseInt(c.PostForm("dys"), 10, 64)
 		p, _ := strconv.ParseInt(c.PostForm("puls"), 10, 64)
-		sp, _ := strconv.ParseBool(c.PostForm("sport"))
+
+		sp := false
+		o := c.PostForm("sport")
+		if o == "on" {
+			sp = true
+		}
 
 		e := entry{
 			0,
