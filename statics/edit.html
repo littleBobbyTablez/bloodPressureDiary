@@ -68,7 +68,7 @@
         <label> to:</label>
         <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
     </span>
-    <button class="m-1 rounded border-2 border-black p-3"
+    <button class="m-1 rounded border-2 border-black p-3 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600"
         hx-include="closest div"
         hx-get="/table/1"
         hx-target="#table"
