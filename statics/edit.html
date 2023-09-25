@@ -51,13 +51,10 @@
     </div>
 
     <div>
-
         <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if eq .pagesize 10 }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .active }}" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":10}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>10</button>
         <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if eq .pagesize 25 }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .active }}" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":25}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>25</button>
         <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if eq .pagesize 50 }}bg-blue-300 {{ end }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-get="/table/{{ .active }}" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":50}' _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>50</button>
-
     </div>
-
 
     <div>
         {{ range .pages }}
@@ -65,5 +62,5 @@
         {{ end }}
     </div>
 </div>
-    <span id="refresh" hx-get="/table/{{ .active }}" hx-target="#table" hx-trigger="addedEntry" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":"{{ .pagesize }}"}'></span>
+    <span id="refresh" hx-get="/table/{{ .active }}" hx-trigger="addedEntry" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":"{{ .pagesize }}"}'></span>
 </div>
