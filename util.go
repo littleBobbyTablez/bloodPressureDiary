@@ -123,6 +123,11 @@ func updateEntry(e entry, db *sql.DB) {
 	}
 }
 
+func deleteEntry(db *sql.DB, id int) error {
+	_, err := db.Exec("DELETE from entries where ROWID = $1;", id)
+	return err
+}
+
 func generateData(e []entry) ([]string, []int64, []int64, []int64) {
 
 	l := len(e)

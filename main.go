@@ -226,6 +226,18 @@ func main() {
 		writeEntry(e, db)
 	})
 
+	r.DELETE("/delete/:Id", func(c *gin.Context) {
+		param := c.Param("Id")
+		id, err := strconv.ParseInt(param, 10, 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		err = deleteEntry(db, int(id))
+
+		c.HTML(http.StatusOK, "empty.html", gin.H{})
+	})
+
 	r.StaticFile("/output.css", "./statics/css/output.css")
 
 	fmt.Printf("Starting server at port 8080\n")
