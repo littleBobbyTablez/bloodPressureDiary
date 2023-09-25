@@ -7,35 +7,35 @@
                     hx-include="#from, #to"
                     hx-target="#table"
                     hx-swap="outerHTML"
-                    hx-vals='{"orderBy":"sys", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "sys") }},"noswitch":"true"{{end}}}'
+                    hx-vals='{"orderBy":"sys", "order":"{{ .order }}", "pagesize":{{ .pagesize }} {{ if not (eq .orderBy "sys") }},"noswitch":"true"{{end}}}'
                     hx-swap="outerHTML">Sys {{ if eq .orderBy "sys" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}"
                     hx-include="#from, #to"
                     hx-target="#table"
-                    hx-vals='{"orderBy":"dys", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "dys") }},"noswitch":"true"{{end}}}'
+                    hx-vals='{"orderBy":"dys", "order":"{{ .order }}", "pagesize":{{ .pagesize }} {{ if not (eq .orderBy "dys") }},"noswitch":"true"{{end}}}'
                     hx-swap="outerHTML">Dys {{ if eq .orderBy "dys" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}"
                     hx-include="#from, #to"
                     hx-target="#table"
-                    hx-vals='{"orderBy":"puls", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "puls") }},"noswitch":"true"{{end}}}'
+                    hx-vals='{"orderBy":"puls", "order":"{{ .order }}", "pagesize":{{ .pagesize }} {{ if not (eq .orderBy "puls") }},"noswitch":"true"{{end}}}'
                     hx-swap="outerHTML">Puls {{ if eq .orderBy "puls" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}"
                     hx-include="#from, #to"
                     hx-target="#table"
-                    hx-vals='{"orderBy":"t", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "t") }},"noswitch":"true"{{end}}}'
+                    hx-vals='{"orderBy":"t", "order":"{{ .order }}", "pagesize":{{ .pagesize }} {{ if not (eq .orderBy "t") }},"noswitch":"true"{{end}}}'
                     hx-swap="outerHTML">Date {{ if eq .orderBy "t" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
                 <button hx-get="/table/{{ .active }}"
                     hx-include="#from, #to"
                     hx-target="#table"
-                    hx-vals='{"orderBy":"sport", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "sport") }},"noswitch":"true"{{end}}}'
+                    hx-vals='{"orderBy":"sport", "order":"{{ .order }}", "pagesize":{{ .pagesize }} {{ if not (eq .orderBy "sport") }},"noswitch":"true"{{end}}}'
                     hx-swap="outerHTML">Sport {{ if eq .orderBy "sport" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left"></th>
@@ -73,7 +73,7 @@
         hx-get="/table/1"
         hx-target="#table"
         hx-swap="outerHTML"
-        hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}'
+        hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":{{ .pagesize }}}'
         _='on mousedown remove .hover:shadow-md end
             on mousedown remove .hover:scale-110 end
             on mouseup add .hover:shadow-md end
@@ -146,5 +146,5 @@
         hx-include="#from, #to"
         hx-target="#table"
         hx-swap="outerHTML"
-        hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":"{{ .pagesize }}"}'></span>
+        hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":{{ .pagesize }}}'></span>
 </div>
