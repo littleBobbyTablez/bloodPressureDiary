@@ -30,7 +30,7 @@
         <td class="border border-solid border-black p-4 text-left">{{ .Sport }}</td>
         <td class="border border-solid border-black p-4 text-left">
             <button hx-get="/editrow/{{ .Id }}">Edit</button>
-            <button class="ml-3" hx-delete="/delete/{{ .Id }}">Delete</button>
+            <button class="ml-3" hx-confirm="Are you sure?" hx-delete="/delete/{{ .Id }}">Delete</button>
         </td>
     </tr>
     {{ end }}
