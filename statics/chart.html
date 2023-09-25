@@ -46,25 +46,25 @@
 
     <div class="flex w-full justify-start p-10">
         <div class="flex justify-evenly">
-        <span class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500">
+        <span class="m-1 rounded border-2 border-black p-3">
             <label>from: </label>
             <input id="from" class="bg-transparent" name="from" type="date" {{ if not (eq .from "")}}value="{{ .from }}"{{end}}/>
         </span>
-        <span class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500">
+        <span class="m-1 rounded border-2 border-black p-3">
             <label> to:</label>
             <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
         </span>
-        <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500" \
+        <button class="m-1 rounded border-2 border-black p-3 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600"
             hx-include="closest div"
             hx-get="/historyChart"
             hx-target="#chart"
             hx-swap="outerHTML"
-            _='on mousedown remove .shadow-xl end
-            on mouseup add .shadow-xl end
-            on mousedown add .scale-95 end
-            on mouseup remove .scale-95 end
-            on mouseleave remove .scale-95 end
-            on mouseleave add .shadow-xl end'>filter</button>
+            _='on mousedown remove .hover:shadow-md end
+            on mouseup add .hover:shadow-md end
+            on mousedown remove .hover:scale-110 end
+            on mouseup add .hover:scale-110 end
+            on mouseleave add .hover:scale-110 end
+            on mouseleave add .hover:shadow-md end'>filter</button>
         </div>
     </div>
 

@@ -1,5 +1,5 @@
 <div id="table" class="m-10 w-5/6 flex-col justify-evenly font-sans">
-    <table class="w-full shadow-xl shadow-gray-500">
+    <table class="w-full shadow shadow-gray-800">
     <thead>
         <tr class="bg-blue-300">
             <th class="w-1/6 border border-solid border-black p-4 text-left">
@@ -60,83 +60,83 @@
 
 <div class="flex w-full justify-between p-10">
     <div class="flex justify-evenly">
-    <span class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500">
+    <span class="m-1 rounded border-2 border-black p-3">
         <label>from: </label>
         <input id="from" class="bg-transparent" name="from" type="date" {{ if not (eq .from "")}}value="{{ .from }}"{{end}}/>
     </span>
-    <span class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500">
+    <span class="m-1 rounded border-2 border-black p-3">
         <label> to:</label>
         <input id="to" class="bg-transparent" name="to" type="date"  {{ if not (eq .to "")}}value="{{ .to }}"{{end}}/>
     </span>
-    <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500"
+    <button class="m-1 rounded border-2 border-black p-3"
         hx-include="closest div"
         hx-get="/table/1"
         hx-target="#table"
         hx-swap="outerHTML"
         hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true"}'
-        _='on mousedown remove .shadow-xl end
-            on mouseup add .shadow-xl end
-            on mousedown add .scale-95 end
-            on mouseup remove .scale-95 end
-            on mouseleave remove .scale-95 end
-            on mouseleave add .shadow-xl end'>filter</button>
+        _='on mousedown remove .hover:shadow-md end
+            on mousedown remove .hover:scale-110 end
+            on mouseup add .hover:shadow-md end
+            on mouseup add .hover:scale-110 end
+            on mouseleave add .hover:scale-110 end
+            on mouseleave add .hover:shadow-md end'>filter</button>
     </div>
 
     <div>
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 hover:shadow-xl hover:scale-110 {{ if eq .pagesize 10 }}bg-blue-300 {{ end }}"
+        <button class="p-2 border-2 border-black rounded m-1 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600 {{ if eq .pagesize 10 }}bg-blue-300 {{ end }}"
             hx-include="#from, #to"
             hx-target="#table"
             hx-swap="outerHTML"
             hx-get="/table/{{ .active }}"
             hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":10}'
-            _='on mousedown remove .shadow-xl end
-                on mouseup add .shadow-xl end
-                on mousedown add .scale-95 end
-                on mouseup remove .scale-95 end
-                on mouseleave remove .scale-95 end
-                on mouseleave add .shadow-xl end'>10</button>
+            _='on mousedown remove .hover:shadow-md end
+                on mousedown remove .hover:scale-110 end
+                on mouseup add .hover:shadow-md end
+                on mouseup add .hover:scale-110 end
+                on mouseleave add .hover:scale-110 end
+                on mouseleave add .hover:shadow-md end'>10</button>
 
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 hover:shadow-xl hover:scale-110 {{ if eq .pagesize 25 }}bg-blue-300 {{ end }}"
+        <button class="p-2 border-2 border-black rounded m-1 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600 {{ if eq .pagesize 25 }}bg-blue-300 {{ end }}"
             hx-include="#from, #to"
             hx-target="#table"
             hx-swap="outerHTML"
             hx-get="/table/{{ .active }}"
             hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":25}'
-            _='on mousedown remove .shadow-xl end
-                on mouseup add .shadow-xl end
-                on mousedown add .scale-95 end
-                on mouseup remove .scale-95 end
-                on mouseleave remove .scale-95 end
-                on mouseleave add .shadow-xl end'>25</button>
+            _='on mousedown remove .hover:shadow-md end
+                on mousedown remove .hover:scale-110 end
+                on mouseup add .hover:shadow-md end
+                on mouseup add .hover:scale-110 end
+                on mouseleave add .hover:scale-110 end
+                on mouseleave add .hover:shadow-md end'>25</button>
 
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 hover:shadow-xl hover:scale-110 {{ if eq .pagesize 50 }}bg-blue-300 {{ end }}"
+        <button class="p-2 border-2 border-black rounded m-1 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600 {{ if eq .pagesize 50 }}bg-blue-300 {{ end }}"
             hx-include="#from, #to"
             hx-target="#table"
             hx-swap="outerHTML"
             hx-get="/table/{{ .active }}"
             hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":50}'
-            _='on mousedown remove .shadow-xl end
-                on mouseup add .shadow-xl end
-                on mousedown add .scale-95 end
-                on mouseup remove .scale-95 end
-                on mouseleave remove .scale-95 end
-                on mouseleave add .shadow-xl end'>50</button>
+            _='on mousedown remove .hover:shadow-md end
+                on mousedown remove .hover:scale-110 end
+                on mouseup add .hover:shadow-md end
+                on mouseup add .hover:scale-110 end
+                on mouseleave add .hover:scale-110 end
+                on mouseleave add .hover:shadow-md end'>50</button>
     </div>
 
     <div>
         {{ range .pages }}
-        <button class="p-2 border-2 border-black rounded m-1 shadow-gray-500 shadow-xl {{ if .Active }}bg-blue-300 {{ end }}"
+        <button class="p-2 border-2 border-black rounded m-1 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600 {{ if .Active }}bg-blue-300 {{ end }}"
             hx-include="#from, #to"
             hx-target="#table"
             hx-swap="outerHTML"
             hx-get="/table/{{ .Page }}"
             hx-vals='{"orderBy":"{{ .OrderBy }}", "order":"{{ .Order }}", "noswitch":"true", "pagesize":{{ .Pagesize }}}'
-            _='on mousedown remove .shadow-xl end
-            on mouseup add .shadow-xl end
-            on mousedown add .scale-95 end
-            on mouseup remove .scale-95 end
-            on mouseleave remove .scale-95 end
-            on mouseleave add .shadow-xl end'>{{ .Page }}</button>
+            _='on mousedown remove .hover:shadow-md end
+            on mousedown remove .hover:scale-110 end
+            on mouseup add .hover:shadow-md end
+            on mouseup add .hover:scale-110 end
+            on mouseleave add .hover:scale-110 end
+            on mouseleave add .hover:shadow-md end'>{{ .Page }}</button>
         {{ end }}
     </div>
 </div>
