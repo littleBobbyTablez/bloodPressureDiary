@@ -78,14 +78,14 @@ func main() {
 	})
 
 	r.GET("/edit", func(c *gin.Context) {
-
+		defaultPageSize := 25
 		e, err := readEntries(db, SqlParams{
 			offset:  0,
 			orderBy: "t",
 			order:   "ASC",
 			from:    "",
 			to:      "",
-			limit:   10,
+			limit:   defaultPageSize,
 		})
 		if err != nil {
 			log.Fatal(err)
@@ -98,7 +98,7 @@ func main() {
 		}
 
 		count := getEntryCount(db, "", "")
-		pages := ((count - 1) / 10) + 1
+		pages := ((count - 1) / defaultPageSize) + 1
 
 		a := make([]pageType, pages)
 
@@ -107,7 +107,7 @@ func main() {
 			a[i-1] = pageType{i, 10, active, "t", "ASC"}
 		}
 
-		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": 1, "orderBy": "t", "order": "ASC", "symbol": "9650", "pagesize": 10})
+		c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": 1, "orderBy": "t", "order": "ASC", "symbol": "9650", "pagesize": defaultPageSize})
 	})
 
 	r.GET("/table/:Page", func(c *gin.Context) {

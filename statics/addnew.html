@@ -2,7 +2,7 @@
 <div id="modal" class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center htmx-added:opacity-0 opacity-100 transition-opacity duration-500" _="on closeModal transition opacity to 0 over 300ms then remove me end">
 
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-800 opacity-50"></div>
-    <form class="z-50 rounded border-2 border-black bg-white p-6 text-xl shadow-xl shadow-gray-800 modal" hx-post="/add" hx-include="[name='sport']" hx-swap="none" _="on submit trigger closeModal end">
+    <form class="z-50 rounded border-2 border-black bg-white p-6 text-xl shadow-xl shadow-gray-800 modal" hx-post="/add" hx-include="[name='sport']" hx-swap="none" _="on submit trigger closeModal end on submit send addedEntry to #refresh end">
         <div class="justify-center p-3">
             <label class="flex w-full justify-center">
                 <span class="pr-2">Sys</span>

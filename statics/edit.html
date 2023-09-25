@@ -3,19 +3,19 @@
     <thead>
         <tr class="bg-blue-300">
             <th class="w-1/6 border border-solid border-black p-4 text-left">
-                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sys", "order":"{{ .order }}" {{ if not (eq .orderBy "sys") }},"noswitch":"true"{{end}}}'>Sys {{ if eq .orderBy "sys" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sys", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "sys") }},"noswitch":"true"{{end}}}'>Sys {{ if eq .orderBy "sys" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
-                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"dys", "order":"{{ .order }}" {{ if not (eq .orderBy "dys") }},"noswitch":"true"{{end}}}'>Dys {{ if eq .orderBy "dys" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"dys", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "dys") }},"noswitch":"true"{{end}}}'>Dys {{ if eq .orderBy "dys" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
-                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"puls", "order":"{{ .order }}" {{ if not (eq .orderBy "puls") }},"noswitch":"true"{{end}}}'>Puls {{ if eq .orderBy "puls" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"puls", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "puls") }},"noswitch":"true"{{end}}}'>Puls {{ if eq .orderBy "puls" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
-                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"t", "order":"{{ .order }}" {{ if not (eq .orderBy "t") }},"noswitch":"true"{{end}}}'>Date {{ if eq .orderBy "t" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"t", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "t") }},"noswitch":"true"{{end}}}'>Date {{ if eq .orderBy "t" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left">
-                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sport", "order":"{{ .order }}" {{ if not (eq .orderBy "sport") }},"noswitch":"true"{{end}}}'>Sport {{ if eq .orderBy "sport" }}&#{{ .symbol }};{{end}}</button>
+                <button hx-get="/table/{{ .active }}" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"sport", "order":"{{ .order }}", "pagesize":"{{ .pagesize }}" {{ if not (eq .orderBy "sport") }},"noswitch":"true"{{end}}}'>Sport {{ if eq .orderBy "sport" }}&#{{ .symbol }};{{end}}</button>
             </th>
             <th class="w-1/6 border border-solid border-black p-4 text-left"></th>
         </tr>
@@ -65,4 +65,5 @@
         {{ end }}
     </div>
 </div>
+    <span id="refresh" hx-get="/table/{{ .active }}" hx-target="#table" hx-trigger="addedEntry" hx-include="#from, #to" hx-target="#table" hx-swap="outerHTML" hx-vals='{"orderBy":"{{ .orderBy }}", "order":"{{ .order }}", "noswitch":"true", "pagesize":"{{ .pagesize }}"}'></span>
 </div>

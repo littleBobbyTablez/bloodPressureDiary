@@ -57,5 +57,7 @@
         <button class="m-1 rounded border-2 border-black p-3 shadow-xl shadow-gray-500" hx-include="closest div" hx-get="/historyChart" hx-target="#chart" hx-swap="outerHTML" _='on mousedown remove .shadow-xl end on mouseup add .shadow-xl end on mousedown add .scale-95 end on mouseup remove .scale-95 end on mouseleave remove .scale-95 end on mouseleave add .shadow-xl end'>filter</button>
         </div>
     </div>
+
+    <span id="refresh" hx-get="/historyChart" hx-trigger="addedEntry" hx-target="#chart" hx-include="#from, #to" hx-swap="outerHTML"></span>
 </div>
 
