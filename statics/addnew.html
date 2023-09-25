@@ -1,8 +1,14 @@
 
-<div id="modal" class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center htmx-added:opacity-0 opacity-100 transition-opacity duration-500" _="on closeModal transition opacity to 0 over 300ms then remove me end">
+<div id="modal"
+    class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center htmx-added:opacity-0 opacity-100 transition-opacity duration-500"
+    _="on closeModal transition opacity to 0 over 300ms then remove me end">
 
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-800 opacity-50"></div>
-    <form class="z-50 rounded border-2 border-black bg-white p-6 text-xl shadow-xl shadow-gray-800 modal" hx-post="/add" hx-include="[name='sport']" hx-swap="none" _="on submit trigger closeModal end on submit send addedEntry to #refresh end">
+    <form class="z-50 rounded border-2 border-black bg-white p-6 text-xl shadow-xl shadow-gray-800 modal"
+        hx-post="/add"
+        hx-include="[name='sport']"
+        hx-swap="none"
+        _="on submit trigger closeModal end on submit send addedEntry to #refresh end">
         <div class="justify-center p-3">
             <label class="flex w-full justify-center">
                 <span class="pr-2">Sys</span>
@@ -31,8 +37,24 @@
             </div>
         </div>
         <div class="flex justify-end p-3">
-            <button class="mr-2 rounded bg-gray-300 p-2 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600" _="on click trigger closeModal end on mousedown remove .hover:shadow-md end on mouseup add .hover:shadow-md end on mousedown remove .hover:scale-110 end on mouseup add .hover:scale-110 end on mouseleave add .hover:scale-110 end on mouseleave add .hover:shadow-md" type="button">Cancel</button>
-            <button class="ml-2 rounded bg-blue-400 p-2 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600" type="submit" _="on click trigger closeModal end on mousedown remove .hover:shadow-md end on mouseup add .hover:shadow-md end on mousedown remove .hover:scale-110 end on mouseup add .hover:scale-110 end on mouseleave add .hover:scale-110 end on mouseleave add .hover:shadow-md">Submit</button>
+            <button type="button"
+                class="mr-2 rounded bg-gray-300 p-2 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600"
+                _="on click trigger closeModal end
+                on mousedown remove .hover:shadow-md
+                end on mouseup add .hover:shadow-md end
+                on mousedown remove .hover:scale-110 end
+                on mouseup add .hover:scale-110 end
+                on mouseleave add .hover:scale-110 end
+                on mouseleave add .hover:shadow-md">Cancel</button>
+            <button type="submit"
+                class="ml-2 rounded bg-blue-400 p-2 transition duration-300 ease-out curser-pointer hover:scale-110 hover:shadow-md hover:shadow-gray-600"
+                _="on click trigger closeModal end
+                on mousedown remove .hover:shadow-md end
+                on mouseup add .hover:shadow-md end
+                on mousedown remove .hover:scale-110 end
+                on mouseup add .hover:scale-110 end
+                on mouseleave add .hover:scale-110 end
+                on mouseleave add .hover:shadow-md">Submit</button>
         </div>
     </form>
 </div>
