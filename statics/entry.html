@@ -6,6 +6,7 @@
 <td class="border border-solid border-black p-4 text-left">{{ .entry.Sport }}</td>
 <td class="border border-solid border-black p-4 text-left">
     <button hx-target="closest tr" hx-get="/editrow/{{ .entry.Id }}">Edit</button>
-    <button class="ml-3" hx-confirm="Are you sure?" hx-delete="/delete/{{ .entry.Id }}">Delete</button>
+    <button class="ml-3" hx-confirm="Are you sure?" hx-delete="/delete/{{ .entry.Id }}"
+        _="on click send addedEntry to #refresh end">Delete</button>
 </td>
 </tr>
