@@ -187,7 +187,7 @@ func getPage(c *gin.Context) {
         sizeparam := c.Query("pagesize")
         pagesize, err := strconv.Atoi(sizeparam)
         if err != nil {
-            pagesize = 10
+            pagesize = 25
         }
 
         orderBy := c.Query("orderBy")
@@ -273,7 +273,7 @@ func editPage(c *gin.Context) {
 
         for i := 1; i <= pages; i++ {
             active := i == 1
-            a[i-1] = pageType{i, 10, active, "t", "ASC"}
+            a[i-1] = pageType{i, defaultPageSize, active, "t", "ASC"}
         }
 
         c.HTML(http.StatusOK, "edit.html", gin.H{"data": data, "pages": a, "active": 1, "orderBy": "t", "order": "ASC", "symbol": "9650", "pagesize": defaultPageSize})
