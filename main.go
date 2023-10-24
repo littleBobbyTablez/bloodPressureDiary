@@ -147,22 +147,29 @@ func editRow(c *gin.Context) {
         d, _ := strconv.ParseInt(c.Request.FormValue("dys"), 10, 64)
         p, _ := strconv.ParseInt(c.Request.FormValue("puls"), 10, 64)
         sp, _ := strconv.ParseBool(c.Request.FormValue("sport"))
-
+        t := c.Request.FormValue("timestamp") + "T15:04:05Z"
+        println(t)
         if err != nil {
             log.Fatal(err)
         }
 
         var e entry
         e, err = readEntry(db, int(id))
-
+        const layout = time.RFC3339
+        ti, err2 := time.Parse(layout, t)
+        if err2 != nil {
+            log.Fatal(err2)
+        }
+        fmt.Println(ti)
         e.Sys = s
         e.Dys = d
         e.Sport = sp
         e.Puls = p
+        e.T = ti
 
         updateEntry(e, db)
 
-        c.HTML(http.StatusOK, "entry.html", gin.H{"entry": entryFormat{e.Id, e.Sys, e.Dys, e.Puls, e.Sport, e.T.Format(time.DateOnly)}})
+        c.HTML(http.StatusOK, "entry.html", gin.H{"entry": entryFormat{e.Id, e.Sys, e.Dys, e.Puls, e.Sport, ti.Format(time.DateOnly)}})
     }
 
 func getEntry(c *gin.Context) {

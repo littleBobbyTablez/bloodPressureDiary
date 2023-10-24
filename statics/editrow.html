@@ -8,7 +8,9 @@
     <td class="border border-solid border-black p-4 text-left">
         <input class="w-12 bg-transparent" name="puls" type="number" value="{{ .entry.Puls }}"/>
     </td>
-    <td class="border border-solid border-black p-4 text-left">{{ .entry.T }}</td>
+    <td class="border border-solid border-black p-4 text-left">
+        <input id="timestamp" class="bg-transparent" name="timestamp" type="date" {{ if not (eq .from "")}}value="{{ .entry.T }}"{{end}}/>
+    </td>
     <td class="border border-solid border-black p-4 text-left">
         <input name="sport" type="checkbox" {{ if .entry.Sport }}checked{{ end }} value="true"/>
     </td>
